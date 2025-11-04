@@ -1,64 +1,67 @@
-/* text-image-block.css */
+/* TEXT + IMAGE BLOCK – überarbeitete, saubere Version */
 
-/* Abschnitt-Hintergrund + Abstand */
 .tib-wrapper {
-  background: var(--tib-bg, #ffffff);
-  padding: 50px 0;
+  background: var(--tib-bg, #f7f9fb);
+  padding: 80px 0;
 }
 
-/* WICHTIG: gleiche Breite wie das Theme */
 .tib-wrapper .page-width {
-  max-width: var(--page-width, 120rem); /* nimmt die Theme-Breite, falls vorhanden */
+  max-width: var(--page-width, 120rem);
   margin: 0 auto;
-  padding-left: var(--page-width-margin, 2rem);
-  padding-right: var(--page-width-margin, 2rem);
+  padding-inline: var(--page-width-margin, 2rem);
 }
 
-/* Layout */
 .tib-inner {
   display: flex;
-  gap: 40px;
   align-items: center;
   justify-content: space-between;
+  gap: 60px;
 }
 
-/* Textbereich */
 .tib-text {
   flex: 1 1 50%;
-  max-width: 520px;
+  max-width: 560px;
 }
 
+/* HEADLINE */
 .tib-heading {
-  font-size: 2.1rem;
-  line-height: 1.1;
-  margin-bottom: 16px;
-}
-
-.tib-content {
-  font-size: 0.95rem;
-  line-height: 1.55;
+  font-size: 1.9rem;
+  font-weight: 700;
   color: #0a1e33;
+  line-height: 1.25;
   margin-bottom: 20px;
 }
 
-.tib-content p {
-  margin-bottom: 12px;
+/* CONTENT TEXT */
+.tib-content {
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: #0a1e33;
+  margin-bottom: 28px;
 }
 
-/* Button */
+.tib-content p {
+  margin-bottom: 14px;
+}
+
+/* BUTTON – direkt ausgerichtet, ohne Flex-Container-Probleme */
+.tib-button-wrapper {
+  display: block; /* entfernt flex-Verhalten */
+  margin-top: 10px;
+}
+
 .tib-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
   background: #006a8f;
   color: #ffffff;
-  border: none;
+  padding: 12px 28px;
   border-radius: 9999px;
-  padding: 11px 22px 12px;
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 1rem;
   text-decoration: none;
+  border: none;
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
@@ -68,18 +71,18 @@
   box-shadow: 0 8px 25px rgba(0, 106, 143, 0.28);
 }
 
-/* Bildbereich */
+/* IMAGE */
 .tib-media {
   flex: 1 1 50%;
   display: flex;
-  justify-content: flex-end; /* Bild rechts an den Rand */
+  justify-content: flex-end;
 }
 
 .tib-image-wrap {
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
-  max-width: 480px;
+  max-width: 520px;
 }
 
 .tib-image-wrap img {
@@ -88,64 +91,40 @@
   display: block;
 }
 
-/* Bildposition steuern über Section-Setting */
-.tib-wrapper.tib-image-right .tib-inner {
-  flex-direction: row;
-}
-
+/* Layoutwechsel links/rechts */
 .tib-wrapper.tib-image-left .tib-inner {
   flex-direction: row-reverse;
 }
 
-.tib-wrapper.tib-image-left .tib-media {
-  justify-content: flex-start;
-}
-
-/* Platzhalter, falls kein Bild gesetzt */
-.tib-image-placeholder {
-  width: 100%;
-  max-width: 480px;
-  min-height: 280px;
-  border-radius: 16px;
-  background: rgba(0, 0, 0, 0.04);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #6a6a6a;
-  font-size: 0.8rem;
-}
-
-/* Responsive */
+/* RESPONSIVE */
 @media (max-width: 960px) {
   .tib-inner {
     flex-direction: column;
   }
 
-  .tib-wrapper.tib-image-right .tib-inner,
-  .tib-wrapper.tib-image-left .tib-inner {
-    flex-direction: column;
+  .tib-heading {
+    font-size: 1.6rem;
+    text-align: center;
   }
 
-  .tib-text {
-    max-width: 100%;
+  .tib-content {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .tib-button-wrapper {
+    text-align: center;
+  }
+
+  .tib-button {
+    font-size: 0.95rem;
   }
 
   .tib-media {
-    width: 100%;
     justify-content: center;
   }
 
-  .tib-image-wrap,
-  .tib-image-placeholder {
-    max-width: 100%;
-  }
-
-  .tib-heading {
-    font-size: 1.7rem;
-  }
-
   .tib-wrapper .page-width {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    padding-inline: 1.25rem;
   }
 }
